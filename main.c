@@ -41,3 +41,20 @@ void UART0_Send(char data) {
     while ((UART0_FR_R & 0x20) != 0);   // Wait until the transmitter is not full
     UART0_DR_R = data;                  // Send the character
 }
+void LED_ON_OFF(char choice) {
+    GPIO_PORTF_DATA_R &= ~0x0E;
+    if(choice=='R') {
+
+            GPIO_PORTF_DATA_R |= 0x02;
+    }
+    else if(choice=='B') {
+
+               GPIO_PORTF_DATA_R |= 0x04;
+       }
+    else if(choice=='G') {
+
+               GPIO_PORTF_DATA_R |= 0x08;
+       }
+    else {
+        GPIO_PORTF_DATA_R |= 0x00;
+    }
